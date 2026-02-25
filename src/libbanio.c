@@ -30,3 +30,10 @@ RECOMP_EXPORT int libbanio_getErrno()
 {
     return libbanio_errno;
 }
+
+RECOMP_EXPORT LIBBANIO_OS libbanio_getOS()
+{
+    s32 ret = 0;
+    libbanio_api(LIBBANIO_CMD_GET_OS, &ret);
+    return ret;
+}

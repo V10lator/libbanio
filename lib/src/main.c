@@ -34,6 +34,22 @@ static void banio_getVersion(uint8_t *rdram, uint32_t payload)
     strcpy_to_n64(rdram, payload, "0.0.1");
 }
 
+static void banio_getOS(uint8_t *rdram, uint32_t payload)
+{
+    int32_t ret =
+#if defined(__linux__)
+        LIBBANIO_OS_LINUX;
+#elif defined(__APPLE__)
+        LIBBANIO_OS_MAC;
+#elif defined(_WIN32) || defined(_WIN64)
+        LIBBANIO_OS_WINDOWS;
+#else
+        LIBBANIO_OS_UNKNOWN;
+#endif
+
+    memcpy_to_n64(rdram, payload, (uint8_t *)&ret, sizeof(int32_t));
+}
+
 DLLEXPORT void libbanio_api(uint8_t* rdram, recomp_context* ctx)
 {
     uint64_t *args = &ctx->r4;
@@ -50,6 +66,9 @@ DLLEXPORT void libbanio_api(uint8_t* rdram, recomp_context* ctx)
             break;
         case LIBBANIO_CMD_GET_VERSION:
             banio_getVersion(rdram, args[1]);
+            break;
+        case LIBBANIO_CMD_GET_OS:
+            banio_getOS(rdram, args[1]);
             break;
 
         // File I/O
