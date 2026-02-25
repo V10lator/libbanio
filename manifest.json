@@ -1,0 +1,7 @@
+{
+    "name": "German",
+    "version_number": "0.0.1",
+    "website_url": "https://github.com/V10lator/libbanio",
+    "description": "An I/O library for Banjo: Recompiled",
+    "dependencies": []
+}

@@ -16,8 +16,8 @@ endif
 TARGET  := $(BUILD_DIR)/mod.elf
 
 LDSCRIPT := mod.ld
-ARCHFLAGS := -target mips -mips2 -mabi=32 -O2 -G0 -mno-abicalls -mno-odd-spreg -mno-check-zero-division \
-             -fomit-frame-pointer -ffast-math -fno-unsafe-math-optimizations -fno-builtin-memset -funsigned-char -fno-builtin-sinf -fno-builtin-cosf
+ARCHFLAGS := -target mips -mips2 -mabi=32 -O3 -G0 -mno-abicalls -mno-odd-spreg -mno-check-zero-division -pipe \
+             -fomit-frame-pointer -ffast-math -fno-builtin-memset -funsigned-char -fno-builtin-sinf -fno-builtin-cosf
 WARNFLAGS := -Wall -Wextra -Wno-incompatible-library-redeclaration -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unused-variable \
              -Wno-missing-braces -Wno-unsupported-floating-point-opt -Wno-cast-function-type-mismatch -Werror=section -Wno-visibility
 CFLAGS   := $(ARCHFLAGS) $(WARNFLAGS) -D_LANGUAGE_C -nostdinc -ffunction-sections
